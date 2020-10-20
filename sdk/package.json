@@ -1,6 +1,7 @@
 {
   "name": "@beevk/newsapi-sdk",
   "description": "Typed Sdk for NewsApi (for a demo)",
+  "version": "1.0.0",
   "main": "./lib/index.js",
   "typings": "./lib/index",
   "module": "./lib.es2015/index.js",
