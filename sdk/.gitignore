@@ -1,0 +1,22 @@
+# tools
+.vscode/
+.idea/
+
+!.idea/runConfigurations/
+
+# builds
+lib/
+lib.es2015/
+umd/*.js
+coverage/
+
+.jest
+dist
+# dependencies
+node_modules/
+
+# misc
+.DS_Store
+*.tgz
+npm-debug.log*
+yarn.lock
