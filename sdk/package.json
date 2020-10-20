@@ -9,6 +9,9 @@
   "keywords": [],
   "author": "beevk",
   "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/beevk/articles"
@@ -62,12 +65,5 @@
       "node_modules",
       "./"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "validate-commit-msg",
-      "pre-commit": "npm run lint -s",
-      "pre-push": "npm run build -s && npm run test -s"
-    }
   }
 }
