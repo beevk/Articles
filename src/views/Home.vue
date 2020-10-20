@@ -14,7 +14,7 @@
     <div class="borderWithPadding articles">
       articles
       <div class="borderWithPadding article">
-        article
+        <Articles />
       </div>
     </div>
   </div>
@@ -22,12 +22,12 @@
 
 <script>
 // @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue';
+import Articles from '@/components/articles/Articles.vue';
 
 export default {
   name: 'Home',
   components: {
-    // HelloWorld,
+    Articles,
   },
 };
 </script>
