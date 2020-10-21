@@ -26,7 +26,7 @@
 import { mapGetters } from 'vuex';
 
 export default {
-  name: 'Details',
+  name: 'History',
 
   components: {
   },

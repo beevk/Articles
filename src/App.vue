@@ -5,6 +5,9 @@
       color="primary"
       dark
     >
+      <router-link to="/">
+       <nav class="whiteText"> News 24/7 </nav>
+      </router-link>
     </v-app-bar>
 
     <v-main>
@@ -49,3 +52,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.whiteText {
+  color: white;
+}
+</style>
