@@ -3,7 +3,7 @@
     <h2> Articles Component </h2>
     <div>
       <div v-if="isLoading">Loading spinner...</div>
-      <div v-else-if="hasError">{{errorMessage}}</div>
+      <div v-else-if="hasError" class="errorMessage">{{errorMessage}}</div>
       <div v-else v-for="article in articles" :key="article.slug" @click="onClick(article.slug)">
         <p>{{article.title}}</p>
       </div>
@@ -53,4 +53,9 @@ export default {
 </script>
 
 <style scoped>
+.errorMessage {
+  border: 2px solid lightsalmon;
+  padding: 10px;
+  color: red;
+}
 </style>

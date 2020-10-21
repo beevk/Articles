@@ -7,6 +7,8 @@ const state = {
   selectedSourceForFilter: '',
   currentPage: '',
   history: [],
+  sources: [],
+  currentArticle: '',
 };
 
 export default state;

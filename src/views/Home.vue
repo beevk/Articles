@@ -1,7 +1,6 @@
 <template>
   <div class="borderWithPadding home">
     <h1>This is Home page</h1>
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <div class="borderWithPadding filterComponent">
       filterComponent
       <div class="borderWithPadding searchBar">

@@ -1,4 +1,4 @@
-// import { Api, ApiTokenMiddleware, WrapMiddleware } from '@beevk/newsapi-sdk';
+import { Api } from '@beevk/newsapi-sdk';
 
 const sluggedUrl = (publishedAt, title) => {
   if (!(publishedAt || title)) {
@@ -16,13 +16,11 @@ const actions = {
   async fetchArticles({ commit }) {
     commit('setLoading', true);
 
-    const response = await fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=099148be22804e849a0c6fe022b7cf5e');
-    const data = await response.json();
+    const client = Api.getInstance('https://newsapi.org', () => '099148be22804e849a0c6fe022b7cf5e');
+    const data = await client.headlines.listHeadlines();
 
-    const { articles, status, message } = data;
-    // console.log('fetchNews - data::: ', data, status);
-
-    if (status !== 'ok') {
+    const { articles, status, message = '' } = data;
+    if (status === 'error') {
       commit('setLoading', false);
       return commit('setNewsError', message);
     }
@@ -54,17 +52,16 @@ const actions = {
     commit('pushToHistory', url);
   },
 
-  setCurrentPage(context, slug) {
-    const pages = localStorage.getItem('visitedPages') || '';
-    let allVisitedPages = [];
-    if (pages) {
-      allVisitedPages = JSON.parse(pages);
+  updateCurrentPage({ commit, state, dispatch }, url) {
+    const { articles = [] } = state;
+    if (articles.length) {
+      return commit('setCurrentArticle', url);
     }
-    allVisitedPages.push(slug);
-    const allVisitedPagesList = JSON.stringify(allVisitedPages);
-    localStorage.setItem('visitedPages', allVisitedPagesList);
-    context.commit('updateCurrentPage', slug);
+    return dispatch('fetchArticles').then(() => {
+      commit('setCurrentArticle', url);
+    });
   },
+
 };
 
 export default actions;

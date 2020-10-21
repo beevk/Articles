@@ -7,6 +7,18 @@ const getters = {
     return state.articles.filter((article) => article.source.id === selectedSource);
   },
 
+  currentArticle: (state) => {
+    const slug = state.currentArticle;
+    const article = state.articles.find((item) => item.slug === slug);
+    console.log('called currentArticle with', slug, 'and response:::', article);
+    return article;
+  },
+
+  historyDetails: (state) => {
+    const { history } = state;
+    return state.articles.filter((item) => history.includes(item.slug));
+  },
+
   isLoading: (state) => state.isLoading,
 
   hasError: (state) => state.hasError,

@@ -11,6 +11,7 @@
     </div>
     <div class="borderWithPadding articleDetailsPage">
       articleDetailsPage
+      <Details />
     </div>
     <div class="borderWithPadding historyOfVisitedLinks">
       historyOfVisitedLinks
@@ -19,11 +20,13 @@
 </template>
 
 <script>
+import Details from '../components/articles/Details.vue';
+
 export default {
   name: 'ArticleDetails',
 
   components: {
-    // HelloWorld,
+    Details,
   },
 
   mounted() {

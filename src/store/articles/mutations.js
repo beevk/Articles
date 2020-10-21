@@ -27,12 +27,16 @@ const mutations = {
     state.history = [...history];
   },
 
-  pushToHistory: (state, articleLink) => {
+  pushToHistory: (state, articleSlug) => {
     // don't push duplicate copy
     const { history } = state;
-    if (history.indexOf(articleLink) === -1) {
-      state.history = [...history, articleLink];
+    if (history.indexOf(articleSlug) === -1) {
+      state.history = [...history, articleSlug];
     }
+  },
+
+  setCurrentArticle: (state, articleSlug) => {
+    state.currentArticle = articleSlug;
   },
 };
 

@@ -9,7 +9,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@beevk/newsapi-sdk": "^1.0.0",
+    "@beevk/newsapi-sdk": "^1.0.1",
     "@crazyfactory/tinka": "^1.9.2",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
