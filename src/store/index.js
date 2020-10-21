@@ -8,7 +8,7 @@ import state from './rootState';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state,
   getters,
   mutations,
@@ -16,3 +16,12 @@ export default new Vuex.Store({
   modules: {
   },
 });
+
+export const unsubscribeStore = store.subscribe((mutation, updatedState) => {
+  if (mutation.type === 'pushToHistory') {
+    const articles = JSON.stringify(updatedState.history);
+    localStorage.setItem('visitedArticlesHistory', articles);
+  }
+});
+
+export default store;

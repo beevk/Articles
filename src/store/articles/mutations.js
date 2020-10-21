@@ -23,6 +23,17 @@ const mutations = {
     state.currentPage = currentPage;
   },
 
+  initializeHistory: (state, history) => {
+    state.history = [...history];
+  },
+
+  pushToHistory: (state, articleLink) => {
+    // don't push duplicate copy
+    const { history } = state;
+    if (history.indexOf(articleLink) === -1) {
+      state.history = [...history, articleLink];
+    }
+  },
 };
 
 export default mutations;

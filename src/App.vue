@@ -25,14 +25,27 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+import { unsubscribeStore } from './store';
 
 export default {
   name: 'App',
 
-  components: {
+  methods: {
+    ...mapActions({
+      loadInitialStateForHistory: 'loadInitialStateForHistory',
+    }),
   },
 
   data: () => ({
   }),
+
+  created() {
+    this.loadInitialStateForHistory();
+  },
+
+  destroyed() {
+    unsubscribeStore();
+  },
 };
 </script>

@@ -21,8 +21,12 @@
 <script>
 export default {
   name: 'ArticleDetails',
+
   components: {
     // HelloWorld,
+  },
+
+  mounted() {
   },
 };
 </script>

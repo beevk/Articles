@@ -6,6 +6,7 @@ const state = {
   searchQuery: '',
   selectedSourceForFilter: '',
   currentPage: '',
+  history: [],
 };
 
 export default state;

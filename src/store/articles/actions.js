@@ -1,15 +1,15 @@
 // import { Api, ApiTokenMiddleware, WrapMiddleware } from '@beevk/newsapi-sdk';
 
-const sluggify = ({ publishedAt, title }) => {
+const sluggedUrl = (publishedAt, title) => {
   if (!(publishedAt || title)) {
     return '';
   }
   const trimmedDate = publishedAt?.split('T')[0];
-  const sluggifiedTitle = title?.toLowerCase()
+  const sluggedTitle = title?.toLowerCase()
     .replace(/[^a-z0-9 -]/g, '')
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-');
-  return `${trimmedDate}-${sluggifiedTitle}`;
+  return `${trimmedDate}-${sluggedTitle}`;
 };
 
 const actions = {
@@ -30,8 +30,8 @@ const actions = {
     const articlesWithSlug = articles.map(
       (article) => {
         const copy = { ...article };
-        // const { publishedAt, title } = copy;
-        const slug = sluggify(copy);
+        const { publishedAt, title } = copy;
+        const slug = sluggedUrl(publishedAt, title);
         // console.log('SLUG:::', slug, copy);
         copy.slug = slug;
         return copy;
@@ -43,11 +43,18 @@ const actions = {
     return commit('setLoading', false);
   },
 
+  loadInitialStateForHistory({ commit }) {
+    const historyFromLocalStorage = JSON.parse(localStorage.getItem('visitedArticlesHistory'));
+    if (Array.isArray(historyFromLocalStorage) && historyFromLocalStorage.length) {
+      commit('initializeHistory', historyFromLocalStorage);
+    }
+  },
+
+  updateHistory({ commit }, url) {
+    commit('pushToHistory', url);
+  },
+
   setCurrentPage(context, slug) {
-    // const { news } = this.$state;
-    // if (!news) {
-    //   context.dispatch('fetchNews');
-    // }
     const pages = localStorage.getItem('visitedPages') || '';
     let allVisitedPages = [];
     if (pages) {
