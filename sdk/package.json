@@ -1,7 +1,7 @@
 {
   "name": "@beevk/newsapi-sdk",
   "description": "Typed Sdk for NewsApi (for a demo)",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "./lib/index.js",
   "typings": "./lib/index",
   "module": "./lib.es2015/index.js",
@@ -14,9 +14,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/beevk/articles"
+    "url": "https://github.com/beevk/articles/tree/master/sdk"
   },
-  "homepage": "https://github.com/beevk/articles",
+  "homepage": "https://github.com/beevk/articles/tree/master/sdk",
   "dependencies": {
     "autobind-decorator": "^2.4.0"
   },
