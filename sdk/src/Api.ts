@@ -1,4 +1,4 @@
-import {Client, ContentTypeMiddleware, Service} from "@crazyfactory/tinka";
+import {Client, Service} from "@crazyfactory/tinka";
 import {ApiTokenMiddleware, TApiTokenFactory} from "./middleware/ApiTokenMiddleware";
 import {WrapMiddleware} from "./middleware/WrapMiddleware";
 import {Headlines} from "./nodes/Headlines";
@@ -28,7 +28,6 @@ export class Api extends Service {
 
     private static getConfiguredClient(baseUrl: string, tokenFactory: TApiTokenFactory): Client {
         const client = new Client({baseUrl});
-        client.addMiddleware(new ContentTypeMiddleware());
         client.addMiddleware(new ApiTokenMiddleware(tokenFactory));
         client.addMiddleware(new WrapMiddleware());
         return client;
