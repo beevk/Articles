@@ -37,8 +37,21 @@ const actions = {
     );
 
     commit('setArticles', articlesWithSlug);
-    commit('clearNewsError', false);
+    commit('clearNewsError');
     return commit('setLoading', false);
+  },
+
+  async fetchSources({ commit }, apiKey = '099148be22804e849a0c6fe022b7cf5e') {
+    const client = Api.getInstance('https://newsapi.org', () => apiKey);
+    const data = await client.sources.listSources();
+
+    const { sources, status, message = '' } = data;
+    if (status === 'error') {
+      return commit('setSourceError', message);
+    }
+
+    commit('setSources', sources);
+    return commit('clearSourceError', false);
   },
 
   loadInitialStateForHistory({ commit }) {
@@ -62,6 +75,9 @@ const actions = {
     });
   },
 
+  setSelectedSourceForFilter({ commit }, source) {
+    commit('setSelectedSource', source);
+  },
 };
 
 export default actions;

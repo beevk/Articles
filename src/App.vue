@@ -6,7 +6,7 @@
       dark
     >
       <router-link to="/">
-       <nav class="whiteText"> News 24/7 </nav>
+       <nav class="whiteText"> News Today </nav>
       </router-link>
     </v-app-bar>
 
@@ -37,6 +37,7 @@ export default {
   methods: {
     ...mapActions({
       loadInitialStateForHistory: 'loadInitialStateForHistory',
+      fetchSources: 'fetchSources',
     }),
   },
 
@@ -45,6 +46,7 @@ export default {
 
   created() {
     this.loadInitialStateForHistory();
+    this.fetchSources();
   },
 
   destroyed() {
@@ -56,5 +58,6 @@ export default {
 <style lang="scss" scoped>
 .whiteText {
   color: white;
+  border-bottom: 1px solid #fff;
 }
 </style>

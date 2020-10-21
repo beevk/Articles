@@ -2,12 +2,11 @@
   <div class="borderWithPadding home">
     <h1>This is Home page</h1>
     <div class="borderWithPadding filterComponent">
-      filterComponent
       <div class="borderWithPadding searchBar">
         searchBar
       </div>
       <div class="borderWithPadding filterDropdown">
-        filterDropdown
+        <DropDownListForFilter />
       </div>
     </div>
     <div class="borderWithPadding articles">
@@ -22,11 +21,13 @@
 <script>
 // @ is an alias to /src
 import Articles from '@/components/articles/Articles.vue';
+import DropDownListForFilter from '../components/filter/DropDownListForFilter.vue';
 
 export default {
   name: 'Home',
   components: {
     Articles,
+    DropDownListForFilter,
   },
 };
 </script>

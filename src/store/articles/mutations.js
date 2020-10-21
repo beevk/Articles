@@ -4,8 +4,6 @@ const mutations = {
   },
 
   setArticles: (state, news) => {
-    // const oldNews = state.news;
-    // console.log('setNews - data:::', oldNews);
     state.articles = [...news];
   },
 
@@ -14,8 +12,18 @@ const mutations = {
     state.errorMessage = errorMessage;
   },
 
-  clearNewsError: (state, hasError) => {
-    state.hasError = hasError;
+  setSourceError: (state, errorMessage) => {
+    state.hasSourceError = true;
+    state.sourceErrorMessage = errorMessage;
+  },
+
+  clearSourceError: (state) => {
+    state.hasSourceError = false;
+    state.sourceErrorMessage = '';
+  },
+
+  clearNewsError: (state) => {
+    state.hasError = false;
     state.errorMessage = '';
   },
 
@@ -28,7 +36,6 @@ const mutations = {
   },
 
   pushToHistory: (state, articleSlug) => {
-    // don't push duplicate copy
     const { history } = state;
     if (history.indexOf(articleSlug) === -1) {
       state.history = [...history, articleSlug];
@@ -37,6 +44,14 @@ const mutations = {
 
   setCurrentArticle: (state, articleSlug) => {
     state.currentArticle = articleSlug;
+  },
+
+  setSources: (state, sources) => {
+    state.sources = sources;
+  },
+
+  setSelectedSource: (state, source) => {
+    state.selectedSourceForFilter = source;
   },
 };
 
