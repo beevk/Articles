@@ -14,19 +14,21 @@
       <Details />
     </div>
     <div class="borderWithPadding historyOfVisitedLinks">
-      historyOfVisitedLinks
+      <History />
     </div>
   </div>
 </template>
 
 <script>
 import Details from '../components/articles/Details.vue';
+import History from '../components/articles/History.vue';
 
 export default {
   name: 'ArticleDetails',
 
   components: {
     Details,
+    History,
   },
 
   mounted() {

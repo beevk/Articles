@@ -9,9 +9,7 @@ const getters = {
 
   currentArticle: (state) => {
     const slug = state.currentArticle;
-    const article = state.articles.find((item) => item.slug === slug);
-    console.log('called currentArticle with', slug, 'and response:::', article);
-    return article;
+    return state.articles.find((item) => item.slug === slug);
   },
 
   historyDetails: (state) => {

@@ -17,7 +17,7 @@
           </div>
         </header>
         <main>
-          <router-view />
+          <router-view :key="$route.fullPath" />
         </main>
       </div>
     </v-main>
