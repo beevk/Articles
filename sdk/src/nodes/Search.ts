@@ -11,12 +11,9 @@ interface IQueryParams {
 export class Search extends Service {
     @boundMethod
     public search(query: string): Promise<IListHeadlineResponse | IError> {
-        let queryParams: IQueryParams = { q: query };
+        const queryParams: IQueryParams = { q: query };
         if (!query) {
-          queryParams = {
-            q: '',
-            country: 'us',
-          };
+          queryParams.country = 'us';
         }
         return this.client.process({
           url: "/v2/top-headlines",
