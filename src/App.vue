@@ -1,12 +1,15 @@
 <template>
-  <v-app>
+  <v-app class="grey lighten-4">
     <v-app-bar
       app
       color="primary"
       dark
     >
       <router-link to="/">
-       <nav class="whiteText"> News Today </nav>
+       <nav class="red text-white">
+          <span class="font-weight-light">News</span>
+          <span>Today</span>
+        </nav>
       </router-link>
     </v-app-bar>
 

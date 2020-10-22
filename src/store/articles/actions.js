@@ -1,11 +1,12 @@
 import getSdk from '../../api';
 
-const sluggedUrl = (publishedAt, title) => {
-  if (!(publishedAt || title)) {
+const sluggedUrl = (publishedAt, url) => {
+  if (!(publishedAt || url)) {
     return '';
   }
+  const stripedUrl = url.split('/').slice(3).join('-');
   const trimmedDate = publishedAt?.split('T')[0];
-  const sluggedTitle = title?.toLowerCase()
+  const sluggedTitle = stripedUrl?.toLowerCase()
     .replace(/[^a-z0-9 -]/g, '')
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-');
@@ -28,8 +29,8 @@ const actions = {
     const articlesWithSlug = articles.map(
       (article) => {
         const copy = { ...article };
-        const { publishedAt, title } = copy;
-        const slug = sluggedUrl(publishedAt, title);
+        const { publishedAt, url } = copy;
+        const slug = sluggedUrl(publishedAt, url);
         // console.log('SLUG:::', slug, copy);
         copy.slug = slug;
         return copy;
@@ -104,6 +105,14 @@ const actions = {
     return dispatch('fetchArticles').then(() => {
       commit('setCurrentArticle', url);
     });
+  },
+
+  updateTitle({ commit, state }, payload) {
+    const { articles } = state;
+    const { slug, value } = payload;
+    const originalArticle = articles.find((x) => x.slug === slug);
+    const updatedArticle = { ...originalArticle, title: value };
+    commit('updateTitle', { slug, updatedArticle });
   },
 
   setSelectedSourceForFilter({ commit }, source) {

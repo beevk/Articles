@@ -53,6 +53,15 @@ const mutations = {
   setSelectedSource: (state, source) => {
     state.selectedSourceForFilter = source;
   },
+
+  updateTitle: (state, { slug, updatedArticle }) => {
+    const { articles } = state;
+    const otherArticles = articles.filter((article) => article.slug !== slug);
+    state.articles = [
+      ...otherArticles,
+      updatedArticle,
+    ];
+  },
 };
 
 export default mutations;
