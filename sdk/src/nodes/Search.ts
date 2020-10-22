@@ -3,9 +3,25 @@ import {boundMethod} from "autobind-decorator";
 import {IError} from "../Api";
 import {IListHeadlineResponse} from "./Headlines";
 
+interface IQueryParams {
+  q: string;
+  country?: string;
+}
+
 export class Search extends Service {
     @boundMethod
     public search(query: string): Promise<IListHeadlineResponse | IError> {
-        return this.client.process({url: "/v2/top-headlines", method: "GET", queryParameters: {q: query}});
+        let queryParams: IQueryParams = { q: query };
+        if (!query) {
+          queryParams = {
+            q: '',
+            country: 'us',
+          };
+        }
+        return this.client.process({
+          url: "/v2/top-headlines",
+          method: "GET",
+          queryParameters: queryParams
+        });
     }
 }
