@@ -5,7 +5,6 @@ const state = {
   articles: [],
   errorMessage: '',
   sourceErrorMessage: '',
-  searchQuery: '',
   selectedSourceForFilter: '',
   currentPage: '',
   history: [],

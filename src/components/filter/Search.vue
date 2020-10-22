@@ -35,7 +35,6 @@ export default {
       this.timeoutId = setTimeout(() => {
         this.searchArticles(value);
       }, 500);
-      // debounce(this.search, 500);
     },
   },
 

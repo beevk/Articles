@@ -1,3 +1,8 @@
+const countArticlesFromSource = (articles, sourceId) => {
+  const filteredArticles = articles.filter((article) => article.source.id === sourceId);
+  return filteredArticles.length;
+};
+
 const getters = {
   processedArticles: (state) => {
     const selectedSource = state.selectedSourceForFilter;
@@ -18,11 +23,11 @@ const getters = {
   },
 
   selectedSource: (state) => {
-    const { sources, selectedSourceForFilter } = state;
+    const { sources, selectedSourceForFilter, articles } = state;
     let selected;
     if (!selectedSourceForFilter) {
       selected = {
-        text: 'All',
+        text: `All (${articles.count}`,
         value: selectedSourceForFilter,
       };
       return selected;
@@ -37,32 +42,18 @@ const getters = {
 
   dropDownOptions: (state) => {
     const { articles, sources } = state;
-    const availableSourceInArticles = articles.map((article) => article.source.id);
-
-    const sourceForDropDownOptions = sources.map((item) => ({
-      text: item.name,
-      value: item.id,
-    }));
-
-    const sortedOptions = sourceForDropDownOptions.sort((a, b) => {
-      const current = a.value;
-      const next = b.value;
-      // console.log(`current: ${current}, next: ${next}`);
-      let isCurrentInArticles = availableSourceInArticles.indexOf(current);
-      isCurrentInArticles = isCurrentInArticles >= 0 ? 1 : 0;
-      let isNextInArticles = availableSourceInArticles.indexOf(next);
-      isNextInArticles = isNextInArticles >= 0 ? 1 : 0;
-      if (isCurrentInArticles < isNextInArticles) {
-        return 1;
-      }
-      return -1;
+    const fullSource = sources.map((source) => {
+      const numberOfArticles = countArticlesFromSource(articles, source.id);
+      return {
+        ...source,
+        articleCount: numberOfArticles,
+      };
     });
-    const allSource = {
-      text: 'All',
-      value: '',
-    };
-    sortedOptions.unshift(allSource);
-    return sortedOptions;
+    fullSource.sort((a, b) => b.articleCount - a.articleCount);
+    return [
+      { value: '', text: `All (${articles.length})` },
+      ...fullSource.map((x) => ({ value: x.id, text: `${x.name} (${x.articleCount})` })),
+    ];
   },
 
   isLoading: (state) => state.isLoading,
