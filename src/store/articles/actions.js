@@ -1,4 +1,4 @@
-import { Api } from '@beevk/newsapi-sdk';
+import getSdk from '../../api';
 
 const sluggedUrl = (publishedAt, title) => {
   if (!(publishedAt || title)) {
@@ -16,7 +16,7 @@ const actions = {
   async fetchArticles({ commit }) {
     commit('setLoading', true);
 
-    const client = Api.getInstance('https://newsapi.org', () => '099148be22804e849a0c6fe022b7cf5e');
+    const client = getSdk();
     const data = await client.headlines.listHeadlines();
 
     const { articles, status, message = '' } = data;
@@ -41,8 +41,8 @@ const actions = {
     return commit('setLoading', false);
   },
 
-  async fetchSources({ commit }, apiKey = '099148be22804e849a0c6fe022b7cf5e') {
-    const client = Api.getInstance('https://newsapi.org', () => apiKey);
+  async fetchSources({ commit }) {
+    const client = getSdk();
     const data = await client.sources.listSources();
 
     const { sources, status, message = '' } = data;
@@ -57,7 +57,7 @@ const actions = {
   async searchArticles({ commit }, query) {
     commit('setLoading', true);
 
-    const client = Api.getInstance('https://newsapi.org', () => '099148be22804e849a0c6fe022b7cf5e');
+    const client = getSdk();
     const data = await client.search.search(query);
 
     const { articles, status, message = '' } = data;

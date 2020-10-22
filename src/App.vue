@@ -16,7 +16,8 @@
           <h1>Common Header for all pages</h1>
           <div id="nav">
             <router-link to="/">Home</router-link> |
-            <router-link to="/article/a">Article</router-link>
+            <router-link to="/article/a">Article</router-link> |
+            <v-btn @click="toggleToken">Toggle Buggy Request</v-btn>
           </div>
         </header>
         <main>
@@ -39,6 +40,10 @@ export default {
       loadInitialStateForHistory: 'loadInitialStateForHistory',
       fetchSources: 'fetchSources',
     }),
+
+    toggleToken() {
+      localStorage.setItem('token', localStorage.getItem('token').split('').reverse().join(''));
+    },
   },
 
   data: () => ({
