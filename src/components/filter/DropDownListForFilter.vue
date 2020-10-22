@@ -1,12 +1,12 @@
 <template>
   <div class="details">
-    <h2> Articles Component </h2>
     <div v-if="dropDownOptions">
       <v-select
           :items="dropDownOptions"
           item-text="text"
           item-value="value"
-          label="Select"
+          label="Select Source"
+          :defaultSelected="selectedSource"
           v-on:change="onSelect"
         ></v-select>
     </div>
@@ -37,6 +37,7 @@ export default {
   computed: {
     ...mapGetters({
       dropDownOptions: 'dropDownOptions',
+      selectedSource: 'selectedSource',
     }),
   },
 };

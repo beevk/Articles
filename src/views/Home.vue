@@ -1,33 +1,32 @@
 <template>
   <div class="borderWithPadding home">
-    <h1>This is Home page</h1>
     <div class="borderWithPadding filterComponent">
       <div class="borderWithPadding searchBar">
-        searchBar
+        <Search />
       </div>
       <div class="borderWithPadding filterDropdown">
         <DropDownListForFilter />
       </div>
     </div>
-    <div class="borderWithPadding articles">
-      articles
-      <div class="borderWithPadding article">
-        <Articles />
-      </div>
+    <div>
+      <h1>Today's Headlines</h1>
+      <Articles />
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Articles from '@/components/articles/Articles.vue';
+import Articles from '../components/articles/Articles.vue';
 import DropDownListForFilter from '../components/filter/DropDownListForFilter.vue';
+import Search from '../components/filter/Search.vue';
 
 export default {
   name: 'Home',
   components: {
     Articles,
     DropDownListForFilter,
+    Search,
   },
 };
 </script>

@@ -54,6 +54,37 @@ const actions = {
     return commit('clearSourceError', false);
   },
 
+  async searchArticles({ commit }, query) {
+    commit('setLoading', true);
+
+    const client = Api.getInstance('https://newsapi.org', () => '099148be22804e849a0c6fe022b7cf5e');
+    const data = await client.search.search(query);
+
+    const { articles, status, message = '' } = data;
+    if (status === 'error') {
+      commit('setLoading', false);
+      return commit('setNewsError', message);
+    }
+    if (articles.length === 0) {
+      return commit('setNewsError', `No news Article found for ${query}`);
+    }
+
+    const articlesWithSlug = articles.map(
+      (article) => {
+        const copy = { ...article };
+        const { publishedAt, title } = copy;
+        const slug = sluggedUrl(publishedAt, title);
+        // console.log('SLUG:::', slug, copy);
+        copy.slug = slug;
+        return copy;
+      },
+    );
+
+    commit('setArticles', articlesWithSlug);
+    commit('clearNewsError');
+    return commit('setLoading', false);
+  },
+
   loadInitialStateForHistory({ commit }) {
     const historyFromLocalStorage = JSON.parse(localStorage.getItem('visitedArticlesHistory'));
     if (Array.isArray(historyFromLocalStorage) && historyFromLocalStorage.length) {

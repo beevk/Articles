@@ -1,13 +1,13 @@
 <template>
-  <div class="details">
-    <h2> Articles Component </h2>
-    <div v-if="article">
-      <img :src="article.urlToImage" :alt="article.description" class='image'>
-      <h1>{{article.title}}</h1>
-    </div>
-    <div v-else>
-      Loading...
-    </div>
+  <div class="search">
+    <v-form class="px-4">
+    <v-text-field
+      label="Search"
+      v-model="query"
+      @input="onChange"
+    >
+    </v-text-field>
+    </v-form>
   </div>
 </template>
 
@@ -16,25 +16,36 @@ import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'Search',
-  components: {
+
+  data() {
+    return {
+      query: '',
+    };
   },
+
+  timeoutId: '',
 
   methods: {
     ...mapActions({
-      setSelectedSourceForFilter: 'setSelectedSourceForFilter',
+      searchArticles: 'searchArticles',
     }),
+
+    onChange(value) {
+      clearTimeout(this.timeoutId);
+      this.timeoutId = setTimeout(() => {
+        this.searchArticles(value);
+      }, 500);
+      // debounce(this.search, 500);
+    },
   },
 
   computed: {
     ...mapGetters({
-      dropDownOptions: 'dropDownOptions',
+      // dropDownOptions: 'dropDownOptions',
     }),
   },
 };
 </script>
 
 <style scoped>
-.image {
-  max-height: 40vh;
-}
 </style>

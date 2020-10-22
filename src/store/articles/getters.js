@@ -17,6 +17,24 @@ const getters = {
     return state.articles.filter((item) => history.includes(item.slug));
   },
 
+  selectedSource: (state) => {
+    const { sources, selectedSourceForFilter } = state;
+    let selected;
+    if (!selectedSourceForFilter) {
+      selected = {
+        text: 'All',
+        value: selectedSourceForFilter,
+      };
+      return selected;
+    }
+    const selectedSourceOption = sources.filter((source) => source.id === selected);
+    selected = {
+      text: selectedSourceOption.name,
+      value: selectedSourceForFilter,
+    };
+    return selected;
+  },
+
   dropDownOptions: (state) => {
     const { articles, sources } = state;
     const availableSourceInArticles = articles.map((article) => article.source.id);
@@ -30,8 +48,11 @@ const getters = {
       const current = a.value;
       const next = b.value;
       // console.log(`current: ${current}, next: ${next}`);
-      if (availableSourceInArticles.indexOf(current) < availableSourceInArticles.indexOf(next)) {
-        console.log('sorting on top', current);
+      let isCurrentInArticles = availableSourceInArticles.indexOf(current);
+      isCurrentInArticles = isCurrentInArticles >= 0 ? 1 : 0;
+      let isNextInArticles = availableSourceInArticles.indexOf(next);
+      isNextInArticles = isNextInArticles >= 0 ? 1 : 0;
+      if (isCurrentInArticles < isNextInArticles) {
         return 1;
       }
       return -1;

@@ -4,7 +4,7 @@
     <div>
       <div v-if="isLoading">Loading spinner...</div>
       <div v-else-if="hasError" class="errorMessage">{{errorMessage}}</div>
-      <div v-else v-for="article in articles" :key="article.slug" @click="onClick(article.slug)">
+      <div v-else v-for="article in articles" :key="article.url" @click="onClick(article.slug)">
         <p>{{article.title}}</p>
       </div>
     </div>
