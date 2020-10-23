@@ -1,4 +1,5 @@
-# articles
+# Articles
+A simple Vue app to fetch latest headlines from [news api](https://newsapi.org). You can search, filter and even see some basic details about listed news.
 
 ## Project setup
 ```
