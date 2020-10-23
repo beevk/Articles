@@ -3,7 +3,6 @@
   <v-card
     elevation="2"
     class="my-4 ml-auto"
-    max-width="370"
     min-height="400"
   >
     <v-img

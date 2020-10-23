@@ -1,7 +1,6 @@
 <template>
-  <v-row wrap>
-    <v-col class="d-flex justify-center flex-wrap">
-      <div class="d-flex wrap" v-if="isLoading">
+  <div>
+      <div class="d-flex wrap justify-center" v-if="isLoading">
         <v-progress-circular
           :size="70"
           :width="7"
@@ -19,17 +18,16 @@
           {{errorMessage}}
         </v-alert>
       </div>
-      <div
-        v-else
+      <v-row v-else>
+        <v-col cols="12" sm="6" md="6" lg="4"
         v-for="article in articles"
         :key="article.url"
         @click="onClick(article.slug)"
-        class="wrap"
       >
         <SummaryCard :article="article" />
-      </div>
-    </v-col>
-  </v-row>
+        </v-col>
+      </v-row>
+  </div>
 </template>
 
 <script>

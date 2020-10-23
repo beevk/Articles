@@ -1,23 +1,19 @@
 <template>
-  <v-row>
-    <v-col xs-12 >
-    <v-form class="">
-      <v-text-field
-        label="Search"
-        v-model="query"
-        hide-details="auto"
-        @input="onChange"
+  <v-form class="">
+    <v-text-field
+      label="Search"
+      v-model="query"
+      hide-details="auto"
+      @input="onChange"
+    >
+      <v-icon
+        slot="append"
+        color="secondary"
       >
-        <v-icon
-          slot="append"
-          color="secondary"
-        >
-          search
-        </v-icon>
-      </v-text-field>
-    </v-form>
-    </v-col>
-  </v-row>
+        search
+      </v-icon>
+    </v-text-field>
+  </v-form>
 </template>
 
 <script>

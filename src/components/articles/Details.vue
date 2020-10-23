@@ -1,42 +1,41 @@
 <template>
   <v-container>
-  <v-row>
-    <v-col xs="12" class="d-flex justify-center flex-wrap">
-    <div v-if="article">
-      <ArticleToolbar
-        v-on:readFullNews="redirect"
-        v-on:changeTitle="updateTitle"
-        :title="article.title"
-        :createdOn="formattedDateTime(article.publishedAt)"
-        :author="author(article.author, article.source.name)"
-      />
-      <h3 class=".text-h3 text--secondary mb-3">{{article.description}}</h3>
-      <v-img
-       :src="article.urlToImage"
-       :alt="article.description"
-       max-height="50vh"
-       max-width="80vw"
-      />
-      <p class=".body-1 text--primary mt-10">{{article.content | sanitize}}</p>
-      <div v-if="showModal">
-        <EditModal
-         :title="article.title"
-         :showModal="showModal"
-         v-on:closeModal="closeModal"
-         v-on:updateTitleFromModal="updateTitleAndCloseModal"
-        />
-      </div>
-    </div>
-    <div class="d-flex wrap" v-else>
-        <v-progress-circular
-          :size="70"
-          :width="7"
-          color="primary"
-          indeterminate
-        ></v-progress-circular>
-      </div>
-    </v-col>
-  </v-row>
+    <v-row>
+      <v-col xs="12" class="d-flex justify-center flex-wrap">
+        <div v-if="article">
+          <ArticleToolbar
+            v-on:readFullNews="redirect"
+            v-on:changeTitle="updateTitle"
+            :title="article.title"
+            :createdOn="formattedDateTime(article.publishedAt)"
+            :author="author(article.author, article.source.name)"
+          />
+          <h3 class=".text-h3 text--secondary mb-3">{{article.description}}</h3>
+          <v-img
+            :src="article.urlToImage"
+            :alt="article.description"
+            aspect-ratio="2"
+          />
+          <p class=".body-1 text--primary mt-10">{{article.content | sanitize}}</p>
+          <div v-if="showModal">
+            <EditModal
+              :title="article.title"
+              :showModal="showModal"
+              v-on:closeModal="closeModal"
+              v-on:updateTitleFromModal="updateTitleAndCloseModal"
+            />
+          </div>
+        </div>
+        <div class="d-flex wrap" v-else>
+          <v-progress-circular
+            :size="70"
+            :width="7"
+            color="primary"
+            indeterminate
+          ></v-progress-circular>
+        </div>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

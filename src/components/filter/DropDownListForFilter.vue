@@ -1,20 +1,15 @@
 <template>
-  <v-row class="my-0">
-    <div v-if="dropDownOptions">
-      <v-col>
-        <v-select
-            :items="dropDownOptions"
-            item-text="text"
-            item-value="value"
-            item-name="text"
-            label="Select Source"
-            prepend-icon="filter_alt"
-            v-on:change="onSelect"
-            single-line
-          ></v-select>
-        </v-col>
-    </div>
-  </v-row>
+  <div v-if="dropDownOptions">
+    <v-select
+      :items="dropDownOptions"
+      item-text="text"
+      item-value="value"
+      label="Select Source"
+      prepend-icon="filter_alt"
+      v-on:change="onSelect"
+      single-line
+    ></v-select>
+  </div>
 </template>
 
 <script>
