@@ -5,7 +5,7 @@ const sluggedUrl = (publishedAt, url) => {
     return '';
   }
   const stripedUrl = url.split('/').slice(3).join('-');
-  const trimmedDate = publishedAt?.split('T')[0];
+  const trimmedDate = publishedAt?.split('T').join('-');
   const sluggedTitle = stripedUrl?.toLowerCase()
     .replace(/[^a-z0-9 -]/g, '')
     .replace(/\s+/g, '-')
@@ -16,6 +16,7 @@ const sluggedUrl = (publishedAt, url) => {
 const actions = {
   async fetchArticles({ commit }) {
     commit('setLoading', true);
+    commit('setSelectedSource', 'all');
 
     const client = getSdk();
     const data = await client.headlines.listHeadlines();

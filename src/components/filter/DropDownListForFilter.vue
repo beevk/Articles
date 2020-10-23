@@ -6,8 +6,8 @@
             :items="dropDownOptions"
             item-text="text"
             item-value="value"
+            item-name="text"
             label="Select Source"
-            :defaultSelected="selectedSource"
             prepend-icon="filter_alt"
             v-on:change="onSelect"
             single-line
@@ -22,8 +22,6 @@ import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'DropDownListForFilter',
-  components: {
-  },
 
   methods: {
     ...mapActions({
@@ -38,7 +36,6 @@ export default {
   computed: {
     ...mapGetters({
       dropDownOptions: 'dropDownOptions',
-      selectedSource: 'selectedSource',
     }),
   },
 };
