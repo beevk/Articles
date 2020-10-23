@@ -1,14 +1,23 @@
 <template>
-  <div class="search">
-    <v-form class="px-4">
-    <v-text-field
-      label="Search"
-      v-model="query"
-      @input="onChange"
-    >
-    </v-text-field>
+  <v-row>
+    <v-col xs-12 >
+    <v-form class="">
+      <v-text-field
+        label="Search"
+        v-model="query"
+        hide-details="auto"
+        @input="onChange"
+      >
+        <v-icon
+          slot="append"
+          color="secondary"
+        >
+          search
+        </v-icon>
+      </v-text-field>
     </v-form>
-  </div>
+    </v-col>
+  </v-row>
 </template>
 
 <script>

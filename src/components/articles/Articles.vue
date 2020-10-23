@@ -1,22 +1,45 @@
 <template>
-  <div class="borderWithPadding about">
-    <h2> Articles Component </h2>
-    <div>
-      <div v-if="isLoading">Loading spinner...</div>
-      <div v-else-if="hasError" class="errorMessage">{{errorMessage}}</div>
-      <div v-else v-for="article in articles" :key="article.url" @click="onClick(article.slug)">
-        <p>{{article.title}}</p>
+  <v-row wrap>
+    <v-col class="d-flex justify-center flex-wrap">
+      <div class="d-flex wrap" v-if="isLoading">
+        <v-progress-circular
+          :size="70"
+          :width="7"
+          color="primary"
+          indeterminate
+        ></v-progress-circular>
       </div>
-    </div>
-  </div>
+      <div v-else-if="hasError">
+        <v-alert
+          color="red"
+          position="top"
+          icon="error"
+          type="error"
+        >
+          {{errorMessage}}
+        </v-alert>
+      </div>
+      <div
+        v-else
+        v-for="article in articles"
+        :key="article.url"
+        @click="onClick(article.slug)"
+        class="wrap"
+      >
+        <SummaryCard :article="article" />
+      </div>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import SummaryCard from '../ui/SummaryCard.vue';
 
 export default {
   name: 'Articles',
   components: {
+    SummaryCard,
   },
 
   methods: {
@@ -53,9 +76,5 @@ export default {
 </script>
 
 <style scoped>
-.errorMessage {
-  border: 2px solid lightsalmon;
-  padding: 10px;
-  color: red;
-}
+
 </style>

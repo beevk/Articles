@@ -33,9 +33,12 @@
                   label="New title:*"
                   v-model="inputData"
                   required
+                  class="mb-0"
                 ></v-text-field>
+                <p class="text-right mt-0">{{titleLength}} char.</p>
               </v-col>
-              <v-col v-if="titleLength">{{titleLength}}</v-col>
+              <v-col v-if="titleLength">
+                </v-col>
             </v-row>
           </v-container>
         </v-card-text>

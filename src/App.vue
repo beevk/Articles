@@ -1,33 +1,48 @@
 <template>
-  <v-app class="grey lighten-4">
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <router-link to="/">
-       <nav class="red text-white">
-          <span class="font-weight-light">News</span>
-          <span>Today</span>
-        </nav>
-      </router-link>
-    </v-app-bar>
+  <v-app class="red darken-4">
+    <v-container>
+      <v-app-bar
+        app
+        color="primary"
+        dark
+      >
+        <v-row class="d-flex space-between">
+          <v-col>
+            <router-link to="/">
+              <nav class="text-xs-h3 font-weight-bold white--text">
+                <span>
+                  <span class="font-weight-light bottomBorder">News</span>
+                  <span>Today</span>
+                </span>
+              </nav>
+            </router-link>
+          </v-col>
+          <v-col class="d-flex justify-end">
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  small
+                  elevation="0"
+                  color="error"
+                  v-bind="attrs"
+                  v-on="on"
+                  @click="toggleToken"
+                >
+                  <v-icon small>
+                    power_settings_new
+                  </v-icon>
+                </v-btn>
+              </template>
+              <span>Toggle error requests</span>
+            </v-tooltip>
+          </v-col>
+        </v-row>
+      </v-app-bar>
 
-    <v-main>
-      <div id="app">
-        <header>
-          <h1>Common Header for all pages</h1>
-          <div id="nav">
-            <router-link to="/">Home</router-link> |
-            <router-link to="/article/a">Article</router-link> |
-            <v-btn @click="toggleToken">Toggle Buggy Request</v-btn>
-          </div>
-        </header>
-        <main>
-          <router-view :key="$route.fullPath" />
-        </main>
-      </div>
-    </v-main>
+      <v-main>
+        <router-view :key="$route.fullPath" />
+      </v-main>
+    </v-container>
   </v-app>
 </template>
 
@@ -64,8 +79,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.whiteText {
-  color: white;
+.spaceBetween {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottomBorder {
   border-bottom: 1px solid #fff;
 }
 </style>

@@ -1,10 +1,17 @@
 <template>
-  <div class="borderWithPadding about">
-    <Details />
-    <div class="borderWithPadding historyOfVisitedLinks">
-      <History />
-    </div>
-  </div>
+  <v-container>
+    <v-row>
+      <v-col xs="12">
+        <Details />
+      </v-col>
+    </v-row>
+    <hr />
+    <v-row>
+      <v-col xs="12">
+        <History />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
