@@ -1,14 +1,9 @@
 const state = {
   isLoading: false,
-  hasError: false,
-  hasSourceError: false,
   articles: [],
-  errorMessage: '',
-  sourceErrorMessage: '',
+  sources: [],
   selectedSourceForFilter: 'all',
   currentPage: '',
-  history: [],
-  sources: [],
   currentArticle: '',
 };
 

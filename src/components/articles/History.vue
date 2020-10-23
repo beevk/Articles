@@ -54,7 +54,7 @@ export default {
 
   computed: {
     ...mapGetters({
-      historyDetails: 'historyDetails',
+      historyDetails: 'history/historyDetails',
     }),
   },
 };

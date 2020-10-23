@@ -20,7 +20,7 @@ export default {
 
   methods: {
     ...mapActions({
-      setSelectedSourceForFilter: 'setSelectedSourceForFilter',
+      setSelectedSourceForFilter: 'articles/setSelectedSourceForFilter',
     }),
 
     onSelect(value) {
@@ -30,7 +30,7 @@ export default {
 
   computed: {
     ...mapGetters({
-      dropDownOptions: 'dropDownOptions',
+      dropDownOptions: 'articles/dropDownOptions',
     }),
   },
 };

@@ -55,8 +55,8 @@ export default {
 
   methods: {
     ...mapActions({
-      loadInitialStateForHistory: 'loadInitialStateForHistory',
-      fetchSources: 'fetchSources',
+      loadInitialStateForHistory: 'history/loadInitialStateForHistory',
+      fetchSources: 'articles/fetchSources',
     }),
 
     toggleToken() {

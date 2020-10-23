@@ -32,7 +32,7 @@ export default {
 
   methods: {
     ...mapActions({
-      searchArticles: 'searchArticles',
+      searchArticles: 'articles/searchArticles',
     }),
 
     onChange(value) {

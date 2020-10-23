@@ -25,9 +25,6 @@ export default {
     Details,
     History,
   },
-
-  mounted() {
-  },
 };
 </script>
 

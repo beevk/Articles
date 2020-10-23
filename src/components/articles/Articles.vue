@@ -36,14 +36,15 @@ import SummaryCard from '../ui/SummaryCard.vue';
 
 export default {
   name: 'Articles',
+
   components: {
     SummaryCard,
   },
 
   methods: {
     ...mapActions({
-      fetchArticles: 'fetchArticles',
-      updateHistory: 'updateHistory',
+      fetchArticles: 'articles/fetchArticles',
+      updateHistory: 'history/updateHistory',
     }),
 
     // this.updateHistory can be called from /article/:name page (mounted event)
@@ -60,10 +61,10 @@ export default {
 
   computed: {
     ...mapGetters({
-      articles: 'processedArticles',
-      isLoading: 'isLoading',
-      hasError: 'hasError',
-      errorMessage: 'errorMessage',
+      articles: 'articles/processedArticles',
+      isLoading: 'articles/isLoading',
+      hasError: 'errors/hasError',
+      errorMessage: 'errors/errorMessage',
     }),
   },
 

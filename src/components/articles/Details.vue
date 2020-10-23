@@ -70,8 +70,8 @@ export default {
 
   methods: {
     ...mapActions({
-      updateCurrentPage: 'updateCurrentPage',
-      updateTitleLocally: 'updateTitle',
+      updateCurrentPage: 'articles/updateCurrentPage',
+      updateTitleLocally: 'articles/updateTitle',
     }),
 
     redirect() {
@@ -107,7 +107,7 @@ export default {
 
   computed: {
     ...mapGetters({
-      article: 'currentArticle',
+      article: 'articles/currentArticle',
     }),
   },
 

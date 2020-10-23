@@ -17,11 +17,6 @@ const getters = {
     return state.articles.find((item) => item.slug === slug);
   },
 
-  historyDetails: (state) => {
-    const { history } = state;
-    return state.articles.filter((item) => history.includes(item.slug));
-  },
-
   dropDownOptions: (state) => {
     const { articles, sources } = state;
     const fullSource = sources.map((source) => {
@@ -38,12 +33,6 @@ const getters = {
     ];
   },
 
-  isLoading: (state) => state.isLoading,
-
-  hasError: (state) => state.hasError,
-
-  errorMessage: (state) => state.errorMessage,
-
   getCurrentArticle: (state) => {
     const currentSlug = state.currentPage;
     const allNews = state.news;
@@ -53,6 +42,8 @@ const getters = {
     const newsArticle = allNews.find((article) => article.slug === currentSlug);
     return { ...newsArticle };
   },
+
+  isLoading: (state) => state.isLoading,
 };
 
 export default getters;
