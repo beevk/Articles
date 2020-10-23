@@ -1,25 +1,30 @@
 <template>
-  <div class="details">
-    <div v-if="historyDetails">
-      <h2> Previously visited Links </h2>
-      <div
-        v-for="history in historyDetails"
-        :key="history.slug"
-        @click="onClick(history.slug)"
-      >
-        <v-card
-          class="mx-auto"
-          max-width="344"
-          v-if="history.slug !== currentSlug"
-        >
-          <v-card-text>
-            <h3>{{history.title}}</h3>
-            <sub v-if="hasName(history)">{{history.source.name}}</sub>
-          </v-card-text>
-        </v-card>
-      </div>
-    </div>
-  </div>
+      <v-col v-if="historyDetails">
+        <v-row>
+          <h2 class=".text-h2 text--primary mb-3"> Recently Visited </h2>
+        </v-row>
+        <v-row
+            v-for="history in historyDetails"
+            :key="history.slug"
+            @click="onClick(history.slug)"
+            class="d-flex justify-center flex-wrap"
+          >
+            <v-col class="my-0">
+              <v-card
+                v-if="history.slug !== currentSlug"
+                class="historyCard"
+              >
+                <v-card-text>
+                  <div class="d-flex">
+                    <v-icon color="primary">link</v-icon>
+                    <h3 class="historyLink">{{history.title}}</h3>
+                  </div>
+                  <small v-if="hasName(history)">- {{history.source.name}}</small>
+                </v-card-text>
+              </v-card>
+            </v-col>
+        </v-row>
+      </v-col>
 </template>
 
 <script>
@@ -27,9 +32,6 @@ import { mapGetters } from 'vuex';
 
 export default {
   name: 'History',
-
-  components: {
-  },
 
   data() {
     return {
@@ -61,5 +63,13 @@ export default {
 <style scoped>
 .image {
   max-height: 40vh;
+}
+
+.historyLink:hover {
+  color: #1976d2;
+}
+
+.historyCard:hover {
+  cursor: pointer;
 }
 </style>
