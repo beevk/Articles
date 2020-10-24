@@ -8,5 +8,5 @@ export default {
   state: errorsState,
   getters: errorsGetters,
   actions: errorsAction,
-  mutataions: errorsMutation,
+  mutations: errorsMutation,
 };

@@ -25,7 +25,8 @@ const actions = {
     const { articles, status, message = '' } = data;
     if (status === 'error') {
       commit('setLoading', false);
-      return commit('errors/setNewsError', message, { root: true });
+      dispatch('errors/setNewsError', message, { root: true });
+      return;
     }
 
     const articlesWithSlug = articles.map(
@@ -40,7 +41,7 @@ const actions = {
 
     commit('setArticles', articlesWithSlug);
     dispatch('errors/clearNewsError', null, { root: true });
-    return commit('setLoading', false);
+    commit('setLoading', false);
   },
 
   async fetchSources({ commit, dispatch }) {
@@ -49,11 +50,12 @@ const actions = {
 
     const { sources, status, message = '' } = data;
     if (status === 'error') {
-      return commit('setSourceError', message);
+      commit('setSourceError', message);
+      return;
     }
 
     commit('setSources', sources);
-    return dispatch('errors/clearSourceError', false, { root: true });
+    dispatch('errors/clearSourceError', false, { root: true });
   },
 
   async searchArticles({ commit, dispatch }, query) {
@@ -65,10 +67,12 @@ const actions = {
     const { articles, status, message = '' } = data;
     if (status === 'error') {
       commit('setLoading', false);
-      return dispatch('errors/setNewsError', message, { root: true });
+      dispatch('errors/setNewsError', message, { root: true });
+      return;
     }
     if (articles.length === 0) {
-      return dispatch('errors/setNewsError', `No news Article found for ${query}`, { root: true });
+      dispatch('errors/setNewsError', `No news Article found for ${query}`, { root: true });
+      return;
     }
 
     const articlesWithSlug = articles.map(
@@ -83,15 +87,16 @@ const actions = {
 
     commit('setArticles', articlesWithSlug);
     dispatch('errors/clearNewsError', null, { root: true });
-    return commit('setLoading', false);
+    commit('setLoading', false);
   },
 
   updateCurrentPage({ commit, state, dispatch }, url) {
     const { articles = [] } = state;
     if (articles.length) {
-      return commit('setCurrentArticle', url);
+      commit('setCurrentArticle', url);
+      return;
     }
-    return dispatch('fetchArticles').then(() => {
+    dispatch('fetchArticles').then(() => {
       commit('setCurrentArticle', url);
     });
   },
