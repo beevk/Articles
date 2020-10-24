@@ -1,6 +1,6 @@
 const actions = {
   setNewsError({ commit }, payload) {
-    commit('setNewsError', payload);
+    commit('setArticleError', payload);
   },
 
   setSourceError({ commit }, payload) {
@@ -8,7 +8,7 @@ const actions = {
   },
 
   clearNewsError({ commit }, payload) {
-    commit('clearNewsError', payload);
+    commit('clearArticleError', payload);
   },
 
   clearSourceError({ commit }, payload) {

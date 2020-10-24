@@ -71,6 +71,7 @@ const actions = {
       return;
     }
     if (articles.length === 0) {
+      commit('setLoading', false);
       dispatch('errors/setNewsError', `No news Article found for ${query}`, { root: true });
       return;
     }

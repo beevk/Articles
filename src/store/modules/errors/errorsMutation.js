@@ -1,7 +1,7 @@
 const mutations = {
-  setNewsError: (state, errorMessage) => {
-    state.hasError = true;
-    state.errorMessage = errorMessage;
+  setArticleError: (state, errorMessage) => {
+    state.hasArticleError = true;
+    state.articleErrorMessage = errorMessage;
   },
 
   setSourceError: (state, errorMessage) => {
@@ -9,9 +9,9 @@ const mutations = {
     state.sourceErrorMessage = errorMessage;
   },
 
-  clearNewsError: (state) => {
-    state.hasError = false;
-    state.errorMessage = '';
+  clearArticleError: (state) => {
+    state.hasArticleError = false;
+    state.articleErrorMessage = '';
   },
 
   clearSourceError: (state) => {

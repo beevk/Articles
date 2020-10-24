@@ -1,7 +1,11 @@
 const getters = {
-  hasError: (state) => state.hasError,
+  hasArticleError: (state) => state.hasArticleError,
 
-  errorMessage: (state) => state.errorMessage,
+  hasSourceError: (state) => state.hasSourceError,
+
+  articleErrorMessage: (state) => state.articleErrorMessage,
+
+  sourceErrorMessage: (state) => state.sourceErrorMessage,
 };
 
 export default getters;

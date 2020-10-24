@@ -63,8 +63,8 @@ export default {
     ...mapGetters({
       articles: 'articles/processedArticles',
       isLoading: 'articles/isLoading',
-      hasError: 'errors/hasError',
-      errorMessage: 'errors/errorMessage',
+      hasError: 'errors/hasArticleError',
+      errorMessage: 'errors/articleErrorMessage',
     }),
   },
 

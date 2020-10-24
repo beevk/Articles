@@ -1,7 +1,7 @@
 const state = {
-  hasError: false,
+  hasArticleError: false,
   hasSourceError: false,
-  errorMessage: '',
+  articleErrorMessage: '',
   sourceErrorMessage: '',
 };
 
