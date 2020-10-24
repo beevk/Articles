@@ -47,8 +47,8 @@ export default {
   filters: {
     ellipsis(text) {
       const { length } = text;
-      const trimmedString = text.slice(0, 100);
-      if (length > 100) {
+      const trimmedString = text.slice(0, 80);
+      if (length > 80) {
         return `${trimmedString}...`;
       }
       return trimmedString;
