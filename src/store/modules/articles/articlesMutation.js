@@ -1,29 +1,34 @@
+import {
+  setLoading,
+  setArticles,
+  setCurrentArticle,
+  setSources,
+  setSelectedSource,
+  updateTitle,
+} from '../../types';
+
 const mutations = {
-  setLoading: (state, isLoading) => {
+  [setLoading]: (state, isLoading) => {
     state.isLoading = isLoading;
   },
 
-  setArticles: (state, news) => {
+  [setArticles]: (state, news) => {
     state.articles = [...news];
   },
 
-  updateCurrentPage: (state, currentPage) => {
-    state.currentPage = currentPage;
-  },
-
-  setCurrentArticle: (state, articleSlug) => {
+  [setCurrentArticle]: (state, articleSlug) => {
     state.currentArticle = articleSlug;
   },
 
-  setSources: (state, sources) => {
+  [setSources]: (state, sources) => {
     state.sources = sources;
   },
 
-  setSelectedSource: (state, source) => {
+  [setSelectedSource]: (state, source) => {
     state.selectedSourceForFilter = source;
   },
 
-  updateTitle: (state, { slug, updatedArticle }) => {
+  [updateTitle]: (state, { slug, updatedArticle }) => {
     const { articles } = state;
     const otherArticles = articles.filter((article) => article.slug !== slug);
     state.articles = [

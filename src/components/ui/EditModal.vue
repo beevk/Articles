@@ -103,7 +103,7 @@ export default {
 
     updateTitle() {
       const value = this.inputData;
-      if (value.length < 3 || value.length > 100) {
+      if (value.length < 2 || value.length > 100) {
         return;
       }
       this.$emit('updateTitleFromModal', value);

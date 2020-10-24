@@ -1,18 +1,25 @@
+import {
+  setArticleError,
+  setSourceError,
+  clearArticleError,
+  clearSourceError,
+} from '../../types';
+
 const actions = {
-  setNewsError({ commit }, payload) {
-    commit('setArticleError', payload);
+  setArticleError({ commit }, payload) {
+    commit(setArticleError, payload);
   },
 
   setSourceError({ commit }, payload) {
-    commit('setSourceError', payload);
+    commit(setSourceError, payload);
   },
 
-  clearNewsError({ commit }, payload) {
-    commit('clearArticleError', payload);
+  clearArticleError({ commit }, payload) {
+    commit(clearArticleError, payload);
   },
 
   clearSourceError({ commit }, payload) {
-    commit('clearSourceError', payload);
+    commit(clearSourceError, payload);
   },
 };
 

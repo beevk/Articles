@@ -35,11 +35,11 @@ const getters = {
 
   getCurrentArticle: (state) => {
     const currentSlug = state.currentPage;
-    const allNews = state.news;
-    if (!allNews) {
+    const allArticles = state.articles;
+    if (!allArticles) {
       return undefined;
     }
-    const newsArticle = allNews.find((article) => article.slug === currentSlug);
+    const newsArticle = allArticles.find((article) => article.slug === currentSlug);
     return { ...newsArticle };
   },
 

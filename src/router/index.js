@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import ArticleDetails from '../views/ArticleDetails.vue';
-import NotFound from '../views/404.vue';
+import NotFound from '../views/Error404.vue';
 
 Vue.use(VueRouter);
 

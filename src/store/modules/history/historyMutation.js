@@ -1,9 +1,11 @@
+import { initializeHistory, pushToHistory } from '../../types';
+
 const mutations = {
-  initializeHistory: (state, history) => {
+  [initializeHistory]: (state, history) => {
     state.history = [...history];
   },
 
-  pushToHistory: (state, articleSlug) => {
+  [pushToHistory]: (state, articleSlug) => {
     const { history } = state;
     if (history.indexOf(articleSlug) === -1) {
       state.history = [...history, articleSlug];

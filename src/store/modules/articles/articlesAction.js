@@ -1,3 +1,11 @@
+import {
+  setLoading,
+  setArticles,
+  setCurrentArticle,
+  setSources,
+  setSelectedSource,
+  updateTitle,
+} from '../../types';
 import getSdk from '../../../api';
 
 const sluggedUrl = (publishedAt, url) => {
@@ -16,16 +24,16 @@ const sluggedUrl = (publishedAt, url) => {
 const actions = {
   async fetchArticles(context) {
     const { commit, dispatch } = context;
-    commit('setLoading', true);
-    commit('setSelectedSource', 'all');
+    commit(setLoading, true);
+    commit(setSelectedSource, 'all');
 
     const client = getSdk();
     const data = await client.headlines.listHeadlines();
 
     const { articles, status, message = '' } = data;
     if (status === 'error') {
-      commit('setLoading', false);
-      dispatch('errors/setNewsError', message, { root: true });
+      commit(setLoading, false);
+      dispatch('errors/setArticleError', message, { root: true });
       return;
     }
 
@@ -39,9 +47,9 @@ const actions = {
       },
     );
 
-    commit('setArticles', articlesWithSlug);
-    dispatch('errors/clearNewsError', null, { root: true });
-    commit('setLoading', false);
+    commit(setArticles, articlesWithSlug);
+    dispatch('errors/clearArticleError', null, { root: true });
+    commit(setLoading, false);
   },
 
   async fetchSources({ commit, dispatch }) {
@@ -50,29 +58,29 @@ const actions = {
 
     const { sources, status, message = '' } = data;
     if (status === 'error') {
-      commit('setSourceError', message);
+      dispatch('errors/setSourceError', message);
       return;
     }
 
-    commit('setSources', sources);
+    commit(setSources, sources);
     dispatch('errors/clearSourceError', false, { root: true });
   },
 
   async searchArticles({ commit, dispatch }, query) {
-    commit('setLoading', true);
+    commit(setLoading, true);
 
     const client = getSdk();
     const data = await client.search.search(query);
 
     const { articles, status, message = '' } = data;
     if (status === 'error') {
-      commit('setLoading', false);
-      dispatch('errors/setNewsError', message, { root: true });
+      commit(setLoading, false);
+      dispatch('errors/setArticleError', message, { root: true });
       return;
     }
     if (articles.length === 0) {
-      commit('setLoading', false);
-      dispatch('errors/setNewsError', `No news Article found for ${query}`, { root: true });
+      commit(setLoading, false);
+      dispatch('errors/setArticleError', `No news Article found for ${query}`, { root: true });
       return;
     }
 
@@ -86,19 +94,19 @@ const actions = {
       },
     );
 
-    commit('setArticles', articlesWithSlug);
-    dispatch('errors/clearNewsError', null, { root: true });
-    commit('setLoading', false);
+    commit(setArticles, articlesWithSlug);
+    dispatch('errors/clearArticleError', null, { root: true });
+    commit(setLoading, false);
   },
 
   updateCurrentPage({ commit, state, dispatch }, url) {
     const { articles = [] } = state;
     if (articles.length) {
-      commit('setCurrentArticle', url);
+      commit(setCurrentArticle, url);
       return;
     }
     dispatch('fetchArticles').then(() => {
-      commit('setCurrentArticle', url);
+      commit(setCurrentArticle, url);
     });
   },
 
@@ -107,11 +115,11 @@ const actions = {
     const { slug, value } = payload;
     const originalArticle = articles.find((x) => x.slug === slug);
     const updatedArticle = { ...originalArticle, title: value };
-    commit('updateTitle', { slug, updatedArticle });
+    commit(updateTitle, { slug, updatedArticle });
   },
 
   setSelectedSourceForFilter({ commit }, source) {
-    commit('setSelectedSource', source);
+    commit(setSelectedSource, source);
   },
 };
 

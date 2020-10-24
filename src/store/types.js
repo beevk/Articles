@@ -1,25 +1,29 @@
-const updateErrorMessage = '_UPDATE_ERROR_MESSAGE';
-const updateArticleError = '_UPDATE_ARTICLE_ERROR';
-const updateSearchError = '_UPDATE_SEARCH_ERROR';
-const updateSourceError = '_UPDATE_SOURCE_ERROR';
+const setArticleError = 'SET_ARTICLE_ERROR';
+const setSourceError = 'SET_SOURCE_ERROR';
+const clearArticleError = 'CLEAR_ARTICLE_ERROR';
+const clearSourceError = 'CLEAR_SOURCE_ERROR';
 
-const updateHistory = 'UPDATE_HISTORY';
+const initializeHistory = 'INITIALIZE_HISTORY';
+const pushToHistory = 'PUSH_TO_HISTORY';
 
-const createArticles = 'CREATE_ARTICLES';
-const createSources = 'CREATE_SOURCES';
-const updateSelectedSource = 'UPDATE_SELECTED_SOURCE';
-const updateCurrentArticle = 'UPDATE_CURRENT_ARTICLE';
-const updateLoading = '_SET_LOADING';
+const setLoading = 'SET_LOADING';
+const setArticles = 'SET_ARTICLES';
+const setCurrentArticle = 'SET_CURRENT_ARTICLE';
+const setSources = 'SET_SOURCES';
+const setSelectedSource = 'SET_SELECTED_SOURCE';
+const updateTitle = 'UPDATE_TITLE';
 
-export default {
-  updateLoading,
-  updateArticleError,
-  updateSearchError,
-  updateSourceError,
-  updateErrorMessage,
-  createArticles,
-  createSources,
-  updateSelectedSource,
-  updateCurrentArticle,
-  updateHistory,
+export {
+  setArticleError,
+  setSourceError,
+  clearArticleError,
+  clearSourceError,
+  initializeHistory,
+  pushToHistory,
+  setLoading,
+  setArticles,
+  setCurrentArticle,
+  setSources,
+  setSelectedSource,
+  updateTitle,
 };
