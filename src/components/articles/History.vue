@@ -6,20 +6,21 @@
         <v-row
           v-for="history in historyDetails"
           :key="history.slug"
-          @click="onClick(history.slug)"
+          @click="onClick(history.slug, history.hasActiveLink)"
           class="d-flex justify-center flex-wrap"
         >
           <v-col class="my-0">
             <v-card
               v-if="history.slug !== currentSlug"
               class="historyCard"
+              :class="history.hasActiveLink ? 'validHistoryLink' : 'invalidHistoryLink'"
             >
               <v-card-text>
                 <div class="d-flex">
                   <v-icon color="primary">link</v-icon>
                   <h3 class="historyLink">{{history.title}}</h3>
                 </div>
-                <small v-if="hasName(history)">- {{history.source.name}}</small>
+                <small v-if="hasName(history)">- {{ history.author }}</small>
               </v-card-text>
             </v-card>
           </v-col>
@@ -40,15 +41,15 @@ export default {
   },
 
   methods: {
-    onClick(slug) {
+    onClick(slug, isValid) {
       const currentPath = this.$route.params.name;
-      if (currentPath !== slug) {
+      if (currentPath !== slug && isValid) {
         this.$router.push({ name: 'ArticleDetails', params: { name: slug } });
       }
     },
 
     hasName(history) {
-      return !!(history?.source?.name);
+      return !!(history.author);
     },
   },
 
@@ -65,11 +66,9 @@ export default {
   max-height: 40vh;
 }
 
-.historyLink:hover {
+.historyCard.validHistoryLink:hover {
   color: #1976d2;
-}
-
-.historyCard:hover {
   cursor: pointer;
 }
+
 </style>

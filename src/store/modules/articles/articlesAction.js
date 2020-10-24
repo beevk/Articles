@@ -58,7 +58,7 @@ const actions = {
 
     const { sources, status, message = '' } = data;
     if (status === 'error') {
-      dispatch('errors/setSourceError', message);
+      dispatch('errors/setSourceError', message, { root: true });
       return;
     }
 
