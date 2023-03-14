@@ -1,7 +1,7 @@
 # News API - SDK (https://newsapi.org)
 
 This SDK is made using ts-module-boilerplate (@crazyfactory).
-Please install [@crazyfactory/tinka](https://www.npmjs.com/package/@crazyfactory/tinka) if you already don't have it in your project.
+Please install [@crazyfactory/tinka](https://www.npmjs.com/package/@crazyfactory/tinka) if you don't have it in your project.
 
 ## Usage
 
